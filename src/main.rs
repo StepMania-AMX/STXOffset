@@ -22,7 +22,6 @@ fn pause() -> Result {
 }
 
 fn help(path: &Path) -> Result {
-    println!("path: {}", path.display());
     let filename = {
         let filename = String::from(path.file_name().unwrap().to_str().unwrap());
         let extension = path
@@ -42,7 +41,7 @@ fn help(path: &Path) -> Result {
         env!("CARGO_PKG_VERSION")
     );
     println!("» Description: {}\n", env!("CARGO_PKG_DESCRIPTION"));
-    println!("» Example: {} +15\n", filename);
+    println!("» Example: {} +20\n", filename);
     pause()?;
 
     Ok(())
@@ -52,7 +51,7 @@ fn apply_offset(stx_file: &mut StxFile, offset: i32) -> Result {
     for mode in LegacyMode::iter() {
         let mut step_data = stx_file.read_step_data(mode)?;
 
-        let mut first_split = step_data
+        let first_split = step_data
             .splits
             .first_mut()
             .ok_or_else(|| io::Error::new(io::ErrorKind::NotFound, "No splits found."))?;
@@ -103,6 +102,7 @@ fn walk_step_dat(offset: i32) -> Result {
             .next()
             .unwrap_or("")
             .to_ascii_uppercase();
+
         if extension == "STX" {
             write!(stdout, "Applying offset to {}... ", file_name)?;
             match (|| -> Result {
@@ -141,6 +141,7 @@ fn walk_step_dir(offset: i32) -> Result {
                 .next()
                 .unwrap_or("")
                 .to_ascii_uppercase();
+
             if extension == "STX" {
                 let stx_path = entry.path();
                 write!(stdout, "Applying offset to {}... ", stx_path.display())?;
@@ -160,8 +161,6 @@ fn walk_step_dir(offset: i32) -> Result {
         }
     }
 
-    pause()?;
-
     Ok(())
 }
 
@@ -175,7 +174,6 @@ fn main() -> Result {
     }
 
     let offset = args[0].parse::<i32>().unwrap_or(0);
-    println!("Offset: {}", offset);
 
     let mut has_errors = false;
     let mut stderr = io::stderr();
