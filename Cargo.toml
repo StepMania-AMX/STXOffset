@@ -1,0 +1,13 @@
+[package]
+name = "STXOffset"
+description = "Adjusts the offset of STX step files from Rebirth to Zero."
+version = "1.0.0"
+authors = ["Aldo Fregoso <aldomx@gmail.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+"libamx" = { git = "ssh://git@github.com/StepMania-AMX/libamx.git" }
+"librespack" = { git = "ssh://git@github.com/StepMania-AMX/librespack.git" }
+strum = "0.26.3"
