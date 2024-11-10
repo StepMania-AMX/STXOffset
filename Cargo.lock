@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "STXOffset"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "libamx",
  "librespack",
@@ -116,8 +116,8 @@ checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 
 [[package]]
 name = "libamx"
-version = "1.0.9"
-source = "git+ssh://git@github.com/StepMania-AMX/libamx.git#2704b9b1e67aa9fa6c598867c1ca9045deb270f4"
+version = "1.0.10"
+source = "git+ssh://git@github.com/StepMania-AMX/libamx.git#7ec190a9a882cb444d582a389690fffe27eb4051"
 dependencies = [
  "byteorder",
  "derive_more",
